@@ -1,0 +1,16 @@
+{
+  "name": "leshrac-tv",
+  "version": "1.0.0",
+  "description": "Tv Leshrac",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Leshrac",
+    "Twitch",
+    "Clone"
+  ],
+  "author": "Azmodan",
+  "license": "ISC"
+}
