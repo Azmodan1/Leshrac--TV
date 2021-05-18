@@ -1,20 +1,18 @@
-import { Game } from '@models/Model'
-export class Same {
-  name = 'Aiti'
-}
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { rootReducer } from './redux/Reducers/RootReducer';
+import { createStore } from 'redux';
+import './index.css';
+import App from './components/App';
 
-const mySame = new Same('leshrac')
+const store = createStore(rootReducer);
 
-const s = document.createElement('p')
-s.textContent = `I like ${mySame.name}.`
-
-const lemao = document.createElement('h1')
-lemao.textContent = 'Оп мизантроп'
-
-const kefao = document.createElement('h2')
-kefao.textContent = 'Валерф!'
-
-const root = document.querySelector('#root')
-root.append(lemao, s, kefao)
-
-console.log(Game)
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);

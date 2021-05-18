@@ -1,11 +1,33 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssOptimizePlugin = require('optimize-css-assets-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require('webpack');
+
+const DevMode = process.env.NODE_ENV === 'development';
+
+const ProdMode = !DevMode;
+
+const optimization = () => {
+  config = {
+    splitChunks: {
+      chunks: 'all',
+    },
+  };
+  if (ProdMode) {
+    config.minimizer = [new CssOptimizePlugin(), new TerserPlugin()];
+  }
+  return config;
+};
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/index.js'),
+    main: ['@babel/polyfill', path.resolve(__dirname, './src/index.js')],
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -13,45 +35,47 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.css', '.jsx', '.png'],
-    alias: {
-      '@models': path.resolve(__dirname, 'src/models'),
-      '@': path.resolve(__dirname, 'src '),
-    },
+    // alias: {
+    //   '@models': path.resolve(__dirname, 'src/models'),
+    //   '@': path.resolve(__dirname, 'src '),
+    // },
   },
-  module: {
-    rules: [
-      { test: /\.svg$/, use: ['svg-inline-loader'] },
-      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, use: ['file-loader'] },
-      { test: /\.xml$/, use: ['xml-loader'] },
-    ],
-  },
-  mode: 'development',
-  mode: 'production',
   devServer: {
+    hotOnly: true,
     open: true,
-    hot: true,
     port: 8080,
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './src/template.html'),
+      template: path.resolve(__dirname, './src/index.html'),
+      favicon: './src/images/Lesh.ico',
       filename: 'index.html',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, './src/images/Leshrac_Icon.png'),
-          to: path.resolve(__dirname, 'dist'),
-        },
-      ],
+      minify: {
+        collapseWhitespace: ProdMode,
+      },
     }),
     new CleanWebpackPlugin(),
+    DevMode && new ESLintPlugin({ extensions: ['js', 'jsx'] }),
+    DevMode && new webpack.HotModuleReplacementPlugin(),
+    DevMode && new ReactRefreshWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: ProdMode ? 'styles-[contenthash].css' : 'styles.css',
+      chunkFilename: '[id].css',
+    }),
   ],
-}
+  module: {
+    rules: [
+      { test: /\.xml$/, use: ['xml-loader'] },
+      { test: /\.svg$/, loader: 'svg-react-loader' },
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      { test: /\.(png|jpg|gif|ico)$/, use: ['file-loader'] },
+    ],
+  },
+
+  optimization: optimization(),
+};

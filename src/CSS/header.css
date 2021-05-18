@@ -1,0 +1,39 @@
+.Header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  font-size: 23px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(24, 24, 27);
+  color: white;
+  max-height: 56px;
+  z-index: 2000;
+}
+
+.header_left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 0.1;
+  height: 56px;
+}
+
+.header_right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 0.1;
+}
+
+#more {
+  fill: white;
+}
+
+#more_main::after {
+  width: 60px;
+}
+
+#direct_main::after {
+  width: 130px;
+}
