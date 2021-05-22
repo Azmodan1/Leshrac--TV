@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
-import Badge from '@material-ui/core/Badge';
-import Avatar from '@material-ui/core/Avatar';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useSelector, useDispatch } from 'react-redux';
-import { ContainerProfile } from './StyledComponents';
-import AccountMenu from './AccountMenu';
+import React, { useState, useRef, useCallback } from 'react'
+import Badge from '@material-ui/core/Badge'
+import Avatar from '@material-ui/core/Avatar'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useSelector, useDispatch } from 'react-redux'
+import { ContainerProfile } from './StyledComponents'
+import AccountMenu from './AccountMenu'
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
     backgroundColor: '#44b700',
     color: '#44b700',
   },
-}))(Badge);
+}))(Badge)
 
 export default function UserAvatar() {
-  const [active, setActive] = useState(false);
-  const { auth } = useSelector((state) => state.authorize.FRB);
-  const [user] = useAuthState(auth);
+  const ref = useRef(null)
+  const [active, setActive] = useState(false)
+  const { auth } = useSelector((state) => state.authorize.FRB)
+  const [user] = useAuthState(auth)
 
   const accmenuHandlder = () => {
-    setActive(!active);
-  };
+    setActive(!active)
+  }
+
   return (
     <div>
       <ContainerProfile>
@@ -34,6 +36,7 @@ export default function UserAvatar() {
           variant="dot"
         >
           <button
+            type="button"
             style={{
               backgroundColor: 'transparent',
               outline: 'none',
@@ -55,7 +58,7 @@ export default function UserAvatar() {
           </button>
         </StyledBadge>
       </ContainerProfile>
-      {active ? <AccountMenu /> : null}
+      {active && <AccountMenu ref={ref} />}
     </div>
-  );
+  )
 }

@@ -23,6 +23,4 @@ export const initialState = {
   },
 }
 
-export const LoginReducer = (state = initialState, action) => {
-  return state
-}
+export const LoginReducer = (state = initialState, action) => state

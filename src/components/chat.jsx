@@ -1,36 +1,31 @@
-import React, { useState } from 'react';
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
-import '../CSS/Chat.css';
-import UsersList from './svg/SvgUsersInChat';
-import CollapseChat from './svg/SvgCollapseChat';
-import ExpandChat from './svg/SvgExpandChat';
-import firebase from 'firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import React, { useState } from 'react'
+import SimpleBar from 'simplebar-react'
+import 'simplebar/dist/simplebar.min.css'
+import '../CSS/Chat.css'
+import firebase from 'firebase'
+import 'firebase/firestore'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { useSelector } from 'react-redux'
+import { CollapseChat, ExpandChat, UsersList } from './svg/SvgComponents'
 import {
   BtnReg,
   ChatContainer,
   ContainerSVG,
   Input,
   SvgButtons,
-} from './StyledComponents';
-import { useSelector } from 'react-redux';
-import {
-  default as Chatislav,
-  Same,
-} from '!svg-react-loader!../images/crown.svg';
+} from './StyledComponents'
 
 export default function Chat() {
-  const { auth, firestore } = useSelector((state) => state.authorize.FRB);
-  const [user] = useAuthState(auth);
-  const [value, setValue] = useState('');
+  const { auth, firestore } = useSelector((state) => state.authorize.FRB)
+  const [user] = useAuthState(auth)
+  const [value, setValue] = useState('')
   const [messages] = useCollectionData(
     firestore.collection('messages').orderBy('createdAt')
-  );
-  const [isActive, setActive] = useState(true);
+  )
+  const [isActive, setActive] = useState(true)
 
-  const handleChange = (e) => setValue(e.target.value);
+  const handleChange = (e) => setValue(e.target.value)
 
   const sendMessage = async () => {
     firestore.collection('messages').add({
@@ -39,36 +34,40 @@ export default function Chat() {
       photoURL: user.photoURL,
       text: value,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-    setValue('');
-  };
-
+    })
+    setValue('')
+  }
+  console.log(firestore.collection('messages').doc('CoVJ1DzVc7jBQZwC17zp'))
   const deleteChat = () => {
-    firestore.collection('messages').doc().delete();
-  };
+    firestore.collection('messages').doc('CoVJ1DzVc7jBQZwC17zp').delete()
+  }
 
   const toggle = () => {
-    setActive(!isActive);
-  };
-  console.log(messages);
+    setActive(!isActive)
+  }
+
   return (
     <div>
       {isActive ? (
         <ChatContainer>
           <div className="chat_title">
             <SvgButtons onClick={toggle}>
-              <CollapseChat />
+              <ContainerSVG>
+                <CollapseChat />
+              </ContainerSVG>
             </SvgButtons>
             <div>ЧАТ</div>
             <SvgButtons>
-              <UsersList />
+              <ContainerSVG>
+                <UsersList />
+              </ContainerSVG>
             </SvgButtons>
           </div>
           <div
             style={{
               textAlign: 'center',
               paddingTop: '60px',
-              maxHeight: '765px',
+              maxHeight: '730px',
             }}
           >
             <SimpleBar style={{ maxHeight: 'inherit' }}>
@@ -91,8 +90,8 @@ export default function Chat() {
               position: 'fixed',
               bottom: '0px',
               width: '320px',
-              height: '130px',
-              backgroundColor: 'transparent',
+              height: '100px',
+              backgroundColor: 'rgb(31, 31, 35)',
             }}
           >
             <Input
@@ -101,7 +100,7 @@ export default function Chat() {
               width="290px"
               fonsize="15px"
               placeholder="Написать сообщение"
-            ></Input>
+            />
             <div
               style={{
                 width: '300px',
@@ -116,11 +115,6 @@ export default function Chat() {
               <BtnReg width="60px" onClick={deleteChat}>
                 Удалить
               </BtnReg>
-              <SvgButtons>
-                <ContainerSVG>
-                  <Chatislav />
-                </ContainerSVG>
-              </SvgButtons>
             </div>
           </div>
         </ChatContainer>
@@ -135,9 +129,11 @@ export default function Chat() {
           }}
           onClick={toggle}
         >
-          <ExpandChat />
+          <ContainerSVG>
+            <ExpandChat />
+          </ContainerSVG>
         </SvgButtons>
       )}
     </div>
-  );
+  )
 }

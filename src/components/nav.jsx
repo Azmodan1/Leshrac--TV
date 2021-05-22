@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import CollapseNav from './svg/SvgCollapseNav';
-import ExpandNav from './svg/SvgExpandNav';
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
-import '../CSS/nav.css';
-import { Input, NavContainer, NavTitle, SvgButtons } from './StyledComponents';
+import React, { useState } from 'react'
+import SimpleBar from 'simplebar-react'
+import 'simplebar/dist/simplebar.min.css'
+import '../CSS/nav.css'
+import {
+  ContainerSVG,
+  Input,
+  NavContainer,
+  NavTitle,
+  SvgButtons,
+} from './StyledComponents'
+import { CollapseNav, ExpandNav } from './svg/SvgComponents'
 
 export default function Navigation() {
-  const [isActive, setActive] = useState('false');
+  const [isActive, setActive] = useState('false')
 
   const toggle = () => {
-    setActive(!isActive);
-  };
+    setActive(!isActive)
+  }
 
   return (
     <div>
@@ -20,7 +25,9 @@ export default function Navigation() {
           <NavTitle>
             <div>ОТСЛЕЖИВАЕМЫЕ КАНАЛЫ</div>
             <SvgButtons onClick={toggle}>
-              <CollapseNav />
+              <ContainerSVG>
+                <CollapseNav />
+              </ContainerSVG>
             </SvgButtons>
           </NavTitle>
           <div
@@ -51,7 +58,7 @@ export default function Navigation() {
               height="20px"
               fontsize="15px"
               placeholder="Найти и добавить друзей"
-            ></Input>
+            />
           </div>
         </NavContainer>
       ) : (
@@ -61,9 +68,11 @@ export default function Navigation() {
           }}
           onClick={toggle}
         >
-          <ExpandNav />
+          <ContainerSVG>
+            <ExpandNav />
+          </ContainerSVG>
         </SvgButtons>
       )}
     </div>
-  );
+  )
 }

@@ -1,10 +1,12 @@
-import React from 'react';
-import { AccountMenuStyles } from './StyledComponents';
+import React, { useState } from 'react'
+import { AccountMenuStyles } from './StyledComponents'
 
-export default function AccountMenu() {
-  return (
+const AccountMenu = () => (
+  <div>
     <AccountMenuStyles>
       <h1> 1223</h1>
     </AccountMenuStyles>
-  );
-}
+  </div>
+)
+
+export default AccountMenu

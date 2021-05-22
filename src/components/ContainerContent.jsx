@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import ReactPlayer from 'react-player';
-import { useSelector } from 'react-redux';
-import { ContainerStyles } from './StyledComponents';
+import React from 'react'
+import ReactPlayer from 'react-player'
+import { useSelector } from 'react-redux'
+import { ContainerStyles } from './StyledComponents'
 
 export default function ContainerContent() {
-  const url = useSelector((state) => state.url.url);
+  const url = useSelector((state) => state.url.url)
 
   return (
     <ContainerStyles>
@@ -17,5 +17,5 @@ export default function ContainerContent() {
         url={url}
       />
     </ContainerStyles>
-  );
+  )
 }

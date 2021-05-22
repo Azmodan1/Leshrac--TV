@@ -4,7 +4,7 @@ const initialState = {
   url: 'https://www.twitch.tv/dota2mc_ru',
 }
 
-export const urlReducer = (state = initialState, action) => {
+const urlReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_URL:
       return { ...state, url: action.payload }
@@ -12,3 +12,5 @@ export const urlReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export default urlReducer

@@ -1,33 +1,33 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssOptimizePlugin = require('optimize-css-assets-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const webpack = require('webpack');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssOptimizePlugin = require('optimize-css-assets-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
+const webpack = require('webpack')
 
-const DevMode = process.env.NODE_ENV === 'development';
+const DevMode = process.env.NODE_ENV === 'development'
 
-const ProdMode = !DevMode;
+const ProdMode = !DevMode
 
 const optimization = () => {
   config = {
     splitChunks: {
       chunks: 'all',
     },
-  };
-  if (ProdMode) {
-    config.minimizer = [new CssOptimizePlugin(), new TerserPlugin()];
   }
-  return config;
-};
+  if (ProdMode) {
+    config.minimizer = [new CssOptimizePlugin(), new TerserPlugin()]
+  }
+  return config
+}
 
 module.exports = {
   entry: {
-    main: ['@babel/polyfill', path.resolve(__dirname, './src/index.js')],
+    main: ['@babel/polyfill', path.resolve(__dirname, './src/index.jsx')],
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -78,4 +78,4 @@ module.exports = {
   },
 
   optimization: optimization(),
-};
+}
