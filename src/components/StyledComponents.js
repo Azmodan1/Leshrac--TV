@@ -1,9 +1,22 @@
 import styled from 'styled-components'
+import Tooltip from '@material-ui/core/Tooltip'
+import { withStyles } from '@material-ui/core/styles'
+
+export const StyledTooltip = withStyles({
+  tooltip: {
+    backgroundColor: 'aqua',
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  arrow: {
+    color: 'aqua',
+  },
+})(Tooltip)
 
 export const ContainerSVG = styled.svg`
   height: 18px;
   width: 18px;
-  fill: ${(props) => props.fill || 'aqua'};
+  fill: ${props => props.fill || 'aqua'};
 `
 
 export const ContainerStyles = styled.div`
@@ -52,14 +65,14 @@ export const NavContainer = styled(ChatContainer)`
   width: 240px;
 `
 
-export const Input = styled.input.attrs((props) => ({
+export const Input = styled.input.attrs(props => ({
   width: props.width || '359px',
   height: props.height || '33px',
   fontSize: props.fontsize || '20px',
 }))`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  font-size: ${(props) => props.fontSize};
+  width: ${props => props.width};
+  height: ${props => props.height};
+  font-size: ${props => props.fontSize};
   border: solid grey;
   background-color: dimgray;
   border-radius: 5px;
@@ -111,7 +124,7 @@ export const BtnLogin = styled(Button)`
   color: white;
 `
 export const BtnReg = styled(Button)`
-  width: ${(props) => props.width || '100px'};
+  width: ${props => props.width || '100px'};
   height: 30px;
   background-color: aqua;
   color: black;

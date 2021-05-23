@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { ContainerStyles } from './StyledComponents'
 
 export default function ContainerContent() {
-  const url = useSelector((state) => state.url.url)
+  const url = useSelector(state => state.url.url)
 
   return (
     <ContainerStyles>
@@ -12,8 +12,8 @@ export default function ContainerContent() {
         style={{
           paddingTop: '50px',
         }}
-        width="inherit"
-        height="770px"
+        width='inherit'
+        height='770px'
         url={url}
       />
     </ContainerStyles>

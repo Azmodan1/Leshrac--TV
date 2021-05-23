@@ -8,6 +8,7 @@ import {
   NavContainer,
   NavTitle,
   SvgButtons,
+  StyledTooltip,
 } from './StyledComponents'
 import { CollapseNav, ExpandNav } from './svg/SvgComponents'
 
@@ -24,11 +25,13 @@ export default function Navigation() {
         <NavContainer>
           <NavTitle>
             <div>ОТСЛЕЖИВАЕМЫЕ КАНАЛЫ</div>
-            <SvgButtons onClick={toggle}>
-              <ContainerSVG>
-                <CollapseNav />
-              </ContainerSVG>
-            </SvgButtons>
+            <StyledTooltip title='Свернуть' placement='right' arrow>
+              <SvgButtons onClick={toggle}>
+                <ContainerSVG>
+                  <CollapseNav />
+                </ContainerSVG>
+              </SvgButtons>
+            </StyledTooltip>
           </NavTitle>
           <div
             style={{
@@ -54,24 +57,26 @@ export default function Navigation() {
             }}
           >
             <Input
-              width="210px"
-              height="20px"
-              fontsize="15px"
-              placeholder="Найти и добавить друзей"
+              width='210px'
+              height='20px'
+              fontsize='15px'
+              placeholder='Найти и добавить друзей'
             />
           </div>
         </NavContainer>
       ) : (
-        <SvgButtons
-          style={{
-            marginTop: '60px',
-          }}
-          onClick={toggle}
-        >
-          <ContainerSVG>
-            <ExpandNav />
-          </ContainerSVG>
-        </SvgButtons>
+        <StyledTooltip title='Развернуть' placement='right' arrow>
+          <SvgButtons
+            style={{
+              marginTop: '60px',
+            }}
+            onClick={toggle}
+          >
+            <ContainerSVG>
+              <ExpandNav />
+            </ContainerSVG>
+          </SvgButtons>
+        </StyledTooltip>
       )}
     </div>
   )

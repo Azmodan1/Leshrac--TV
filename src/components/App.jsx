@@ -6,7 +6,7 @@ import Chat from './Chat'
 import ContainerContent from './ContainerContent'
 
 const App = () => (
-  <div className="App_container">
+  <div className='App_container'>
     <Header />
     <Navigation />
     <ContainerContent />

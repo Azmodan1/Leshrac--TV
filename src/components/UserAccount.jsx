@@ -28,15 +28,15 @@ export default function UserAvatar() {
     <div>
       <ContainerProfile>
         <StyledBadge
-          overlap="circle"
+          overlap='circle'
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right',
           }}
-          variant="dot"
+          variant='dot'
         >
           <button
-            type="button"
+            type='button'
             style={{
               backgroundColor: 'transparent',
               outline: 'none',
@@ -48,7 +48,7 @@ export default function UserAvatar() {
             onClick={accmenuHandlder}
           >
             <Avatar
-              alt="Remy Sharp"
+              alt='Remy Sharp'
               src={user.photoURL}
               style={{
                 height: '30px',

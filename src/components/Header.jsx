@@ -9,14 +9,7 @@ import UserAvatar from './UserAccount'
 import '../CSS/header.css'
 import leshrac from '../images/leshrac.png'
 
-import {
-  Crown,
-  Direct,
-  Notifications,
-  Bits,
-  MoreInfo,
-  UserIcon,
-} from './svg/SvgComponents'
+import { Crown, Direct, Notifications, Bits, MoreInfo, UserIcon } from './svg/SvgComponents'
 
 import {
   SvgButtons,
@@ -25,13 +18,14 @@ import {
   BtnLogin,
   ContainerSVG,
   BitsButton,
+  StyledTooltip,
 } from './StyledComponents'
 
 export default function Header() {
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
   const InputEl = useRef(null)
-  const { auth } = useSelector((state) => state.authorize.FRB)
+  const { auth } = useSelector(state => state.authorize.FRB)
   const [user] = useAuthState(auth)
 
   const logining = async () => {
@@ -39,7 +33,7 @@ export default function Header() {
     await auth.signInWithPopup(provider)
   }
 
-  const newStream = (event) => {
+  const newStream = event => {
     const text = value
     if (event.key === 'Enter') {
       if (text === '') {
@@ -51,49 +45,59 @@ export default function Header() {
     }
   }
 
-  const handleChange = (e) => setValue(e.target.value)
+  const handleChange = e => setValue(e.target.value)
 
   return (
-    <div className="Header">
-      <div className="header_left">
+    <div className='Header'>
+      <div className='header_left'>
         <div>
-          <img src={leshrac} width="auto" height="80px" alt="leshrac" />{' '}
+          <img src={leshrac} width='auto' height='80px' alt='leshrac' />
         </div>
         <h4>Отслеживаемое</h4>
         <h4>Просмотр</h4>
-        <SvgButtons>
-          <ContainerSVG fill="white">
-            <MoreInfo />
-          </ContainerSVG>
-        </SvgButtons>
+        <StyledTooltip title='Больше' arrow>
+          <SvgButtons>
+            <ContainerSVG>
+              <MoreInfo />
+            </ContainerSVG>
+          </SvgButtons>
+        </StyledTooltip>
       </div>
-      <div className="header_center">
+      <div className='header_center'>
         <Input
           ref={InputEl}
           value={value}
-          placeholder="Поиск"
+          placeholder='Поиск'
           onChange={handleChange}
           onKeyPress={newStream}
         />
       </div>
-      <div className="header_right">
-        <SvgButtons>
-          <ContainerSVG>
-            <Crown />
-          </ContainerSVG>
-        </SvgButtons>
+      <div className='header_right'>
+        <StyledTooltip title='Новые трофеи для Prime' arrow>
+          <SvgButtons>
+            <ContainerSVG>
+              <Crown />
+            </ContainerSVG>
+          </SvgButtons>
+        </StyledTooltip>
         {user ? (
           <>
-            <SvgButtons>
-              <ContainerSVG>
-                <Notifications />
-              </ContainerSVG>
-            </SvgButtons>
-            <SvgButtons onClick={() => auth.signOut()}>
-              <ContainerSVG>
-                <Direct />
-              </ContainerSVG>
-            </SvgButtons>
+            <StyledTooltip title='Уведомления' arrow>
+              <SvgButtons>
+                <ContainerSVG>
+                  <Notifications />
+                </ContainerSVG>
+              </SvgButtons>
+            </StyledTooltip>
+
+            <StyledTooltip title='Личные сообщения' arrow>
+              <SvgButtons onClick={() => auth.signOut()}>
+                <ContainerSVG>
+                  <Direct />
+                </ContainerSVG>
+              </SvgButtons>
+            </StyledTooltip>
+
             <BitsButton>
               <ContainerSVG>
                 <Bits />
@@ -111,7 +115,6 @@ export default function Header() {
             }}
           >
             <BtnLogin onClick={logining}>Войти через Google</BtnLogin>
-
             <BtnReg>Регистрация</BtnReg>
 
             <SvgButtons>
