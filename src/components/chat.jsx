@@ -39,7 +39,6 @@ export default function Chat() {
 
     setValue('')
   }
-  console.log(firestore.collection('messages').doc())
 
   const deleteChat = () => {
     firestore.collection('messages').doc()

@@ -2,7 +2,7 @@ import '../CSS/App.css'
 import React from 'react'
 import Header from './Header'
 import Navigation from './Nav'
-import Chat from './Chat'
+import Chat from './chat'
 import ContainerContent from './ContainerContent'
 
 const App = () => (
