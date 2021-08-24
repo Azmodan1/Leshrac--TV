@@ -22,6 +22,15 @@ module.exports = {
   },
   plugins: ['react', 'prettier'],
   rules: {
+    'jsx-a11y/label-has-associated-control': [
+      'warn',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
+    'arrow-body-style': ['warn', 'as-needed'],
     'import/no-extraneous-dependencies': [
       'warn',
       {
@@ -50,10 +59,7 @@ module.exports = {
         tryExtensions: ['.js', '.json', '.node', '.jsx'],
       },
     ],
-    'node/no-unsupported-features/es-syntax': [
-      'error',
-      { ignores: ['modules'] },
-    ],
+    'node/no-unsupported-features/es-syntax': ['error', { ignores: ['modules'] }],
 
     'prettier/prettier': 'warn',
     'no-unused-vars': 'warn',

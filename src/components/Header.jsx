@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { changeStream } from '../redux/action'
 import UserAvatar from './UserAccount'
@@ -21,7 +22,7 @@ import {
   StyledTooltip,
 } from './StyledComponents'
 
-export default function Header() {
+function Header() {
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
   const InputEl = useRef(null)
@@ -114,8 +115,10 @@ export default function Header() {
               justifyContent: 'space-between',
             }}
           >
-            <BtnLogin onClick={logining}>Войти через Google</BtnLogin>
-            <BtnReg>Регистрация</BtnReg>
+            <BtnLogin onClick={logining}>Войти </BtnLogin>
+            <Link to='/login'>
+              <BtnReg>Регистрация</BtnReg>
+            </Link>
 
             <SvgButtons>
               <ContainerSVG>
@@ -128,3 +131,4 @@ export default function Header() {
     </div>
   )
 }
+export default Header

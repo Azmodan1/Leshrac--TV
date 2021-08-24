@@ -7,7 +7,7 @@ const initialState = {
 const urlReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_URL:
-      return { ...state, url: action.payload }
+      return { ...state, url: `https://www.twitch.tv/${action.payload}` }
     default:
       return state
   }

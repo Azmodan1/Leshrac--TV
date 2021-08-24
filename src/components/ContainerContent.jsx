@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player'
 import { useSelector } from 'react-redux'
 import { ContainerStyles } from './StyledComponents'
 
-export default function ContainerContent() {
+function ContainerContent() {
   const url = useSelector(state => state.url.url)
 
   return (
@@ -12,10 +12,11 @@ export default function ContainerContent() {
         style={{
           paddingTop: '50px',
         }}
-        width='inherit'
+        width='inherit' 
         height='770px'
         url={url}
       />
     </ContainerStyles>
   )
 }
+export default ContainerContent

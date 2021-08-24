@@ -12,7 +12,7 @@ import {
 } from './StyledComponents'
 import { CollapseNav, ExpandNav } from './svg/SvgComponents'
 
-export default function Navigation() {
+function Navigation() {
   const [isActive, setActive] = useState('false')
 
   const toggle = () => {
@@ -81,3 +81,4 @@ export default function Navigation() {
     </div>
   )
 }
+export default Navigation

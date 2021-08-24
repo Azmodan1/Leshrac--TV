@@ -20,7 +20,7 @@ import {
   SvgButtons,
 } from './StyledComponents'
 
-export default function Chat() {
+function Chat() {
   const { auth, firestore } = useSelector(state => state.authorize.FRB)
   const [user] = useAuthState(auth)
   const [value, setValue] = useState('')
@@ -145,3 +145,4 @@ export default function Chat() {
     </div>
   )
 }
+export default Chat

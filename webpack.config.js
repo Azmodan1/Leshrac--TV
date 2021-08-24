@@ -32,6 +32,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].[contenthash].js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.css', '.jsx', '.png'],
@@ -44,6 +45,7 @@ module.exports = {
     hotOnly: true,
     open: true,
     port: 8080,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

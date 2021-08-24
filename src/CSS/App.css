@@ -9,12 +9,6 @@ h4:hover {
   cursor: pointer;
 }
 
-.App_container {
-  display: flex;
-  justify-content: space-between;
-  height: 100vh;
-}
-
 .simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
   background-color: aqua;
 }

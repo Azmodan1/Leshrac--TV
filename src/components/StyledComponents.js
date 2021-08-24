@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import Tooltip from '@material-ui/core/Tooltip'
 import { withStyles } from '@material-ui/core/styles'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
 export const StyledTooltip = withStyles({
   tooltip: {
@@ -13,10 +15,29 @@ export const StyledTooltip = withStyles({
   },
 })(Tooltip)
 
+export const StyledTabs = withStyles({
+  root: {
+    width: '359px',
+  },
+  flexContainer: {
+    justifyContent: 'space-around',
+    width: '359px',
+  },
+  scroller: {
+    width: '359px',
+  },
+  indicator: {
+    backgroundColor: 'aqua',
+  },
+})(Tabs)
+
 export const ContainerSVG = styled.svg`
   height: 18px;
   width: 18px;
   fill: ${props => props.fill || 'aqua'};
+`
+export const Title = styled.span`
+  color: white;
 `
 
 export const ContainerStyles = styled.div`
@@ -95,9 +116,46 @@ export const Button = styled.button`
   cursor: pointer;
   border-style: none;
   border-radius: 5px;
+  background-color: ${props => props.color};
   &:hover {
-    background-color: rgb(70, 70, 73);
+    background-color: rgb(15, 221, 221);
   }
+`
+export const ButtonClose = styled(Button)`
+  margin-left: 310px;
+  z-index: 2000;
+  margin-bottom: 390px;
+`
+
+export const AppContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+`
+
+export const ModalWrapper = styled(AppContainer)`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  font-weight: bold;
+`
+
+export const ModalContainer = styled.div`
+  border-radius: 10px;
+  flex-direction: column;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(70, 70, 73);
+  position: fixed;
+  width: 390px;
+  height: 430px;
+`
+export const ModalContent = styled(ModalContainer)`
+  width: 359px;
 `
 
 export const SvgButtons = styled(Button)`
@@ -122,6 +180,9 @@ export const BtnLogin = styled(Button)`
   height: 30px;
   background-color: rgb(58, 58, 61);
   color: white;
+  &:hover {
+    background-color: rgb(70, 70, 71);
+  }
 `
 export const BtnReg = styled(Button)`
   width: ${props => props.width || '100px'};
@@ -134,4 +195,14 @@ export const BtnReg = styled(Button)`
   &:active {
     background-color: rgb(15, 100, 221);
   }
+  &:disabled {
+    color: white;
+    background-color: rgb(123, 123, 123);
+  }
+`
+export const Toggler = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+  border-bottom: 2px solid aqua;
 `
